@@ -8,7 +8,13 @@ const SINGLE_ACCOUNT_QUERY = gql`
 		Account(where: { id: $id }) {
 			name
 			goal
-			currentAmount
+			balance
+			deposits {
+				id
+				description
+				amount
+				date
+			}
 		}
 	}
 `;
@@ -19,6 +25,7 @@ export default function SingleAccount({ id }) {
 			id:id
 		}
 	});
+	console.log(data);
 	if(loading) return <p>Loading...</p>
 	if(error) return <DisplayError error={error}/>
 	return <div>
@@ -26,5 +33,15 @@ export default function SingleAccount({ id }) {
 			<title>{data.Account.name}</title>
 		</Head>
 		<h2>{data.Account.name}</h2>
+	
+		{data.Account.deposits.map(deposit => (
+			<div key={deposit.id}>
+				<div>Description: {deposit.description}</div>	
+				<div>Amount: {deposit.amount}</div>
+				<div>Date: {deposit.date}</div>
+			</div>
+		))}
+		
+	
 	</div>
 }

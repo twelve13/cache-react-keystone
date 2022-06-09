@@ -1,5 +1,7 @@
-import { list } from "@keystone-next/keystone/schema";
+import { config, list } from "@keystone-next/keystone/schema";
 import { text, integer, relationship } from "@keystone-next/fields";
+import Deposit from "./Deposit";
+import Withdrawal from "./Withdrawal";
 
 export const Account = list({
 	// TODO
@@ -7,16 +9,16 @@ export const Account = list({
 	fields: {
 		name: text({ isRequired: true }),
 		goal: integer(),
-		currentAmount: integer(),
-		deposit: relationship({
-			ref: "Deposit.account",
+		balance: integer(),
+		deposits: relationship({
+			ref: "Deposit",
 			many: true,
 			ui: {
 				inlineCreate: { fields: ["amount", "date"] }
 			}
 		}),
-		withdrawal: relationship({
-			ref: "Withdrawal.account",
+		withdrawals: relationship({
+			ref: "Withdrawal",
 			many: true,
 			ui: {
 				inlineCreate: { fields: ["name", "amount", "date"] }

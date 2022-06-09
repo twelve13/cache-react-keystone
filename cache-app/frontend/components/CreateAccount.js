@@ -13,18 +13,18 @@ mutation CREATE_ACCOUNT_MUTATION(
 	# ! makes it required
 	$name: String!
 	$goal: Int
-	$currentAmount: Int
+	$balance: Int
 ) {
 	createAccount(
 		data:{
 			name: $name,
 			goal: $goal
-			currentAmount: $currentAmount
+			balance: $balance
 		}
 	) {
 		id
 		goal
-		currentAmount
+		balance
 	}
 	}
 `;
@@ -35,7 +35,7 @@ export default function CreateAccount() {
 	const { inputs, handleChange, clearForm } = useForm({
 		name: "Caroline1",
 		goal: 123,
-		currentAmount: 25
+		balance: 25
 	});
 	const [createAccount, { loading, error, data }] = useMutation(CREATE_ACCOUNT_MUTATION, {
 		variables: inputs,
@@ -88,10 +88,10 @@ export default function CreateAccount() {
 				Current amount
 				<input 
 					type="number" 
-					id="currentAmount" 
-					name="currentAmount" 
+					id="balance" 
+					name="balance" 
 					placeholder="enter current amount"
-					value={inputs.currentAmount}
+					value={inputs.balance}
 					// onChange={(e) => {
 					// 	setName(e.target.value);
 					// }}

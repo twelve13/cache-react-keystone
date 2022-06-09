@@ -3,8 +3,9 @@ import { text, integer, relationship } from "@keystone-next/fields";
 
 export const Deposit = list({
 	fields: {
-		amount: integer(),
+		description: text({ isRequired: true }),
+		amount: integer({ isRequired: true }),
 		date: text({ isRequired: true }),
-		account: relationship({ ref: "Account.deposit", many: true })
+		account: relationship({ ref: "Account", many: true })
 	}
 });

@@ -26,7 +26,7 @@ const UPDATE_ACCOUNT_MUTATION = gql`
 			data: {
 				name: $name,
 				goal: $goal,
-				balance: $balance
+				balance: $currentAmount
 			}
 		) {
 			id
@@ -98,10 +98,10 @@ export default function UpdateAccount({ id }) {
 				Current amount
 				<input 
 					type="number" 
-					id="balance" 
-					name="balance" 
+					id="currentAmount" 
+					name="currentAmount" 
 					placeholder="enter current amount"
-					value={inputs.balance}
+					value={inputs.currentAmount}
 					// onChange={(e) => {
 					// 	setName(e.target.value);
 					// }}

@@ -6,6 +6,6 @@ export const Withdrawal = list({
 		name: text({ isRequired: true }),
 		amount: integer(),
 		date: text({ isRequired: true }),
-		account: relationship({ ref: "Account.withdrawal", many: true })
+		account: relationship({ ref: "Account", many: true })
 	}
 });

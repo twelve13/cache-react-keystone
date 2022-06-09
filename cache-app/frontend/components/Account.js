@@ -10,13 +10,16 @@ export default function Account({ accountProp }) {
 
 			</Link>
 			<div>Goal: {formatMoney(accountProp.goal)}</div>
-			<div>Current: {accountProp.currentAmount}</div>
+			<div>Current: {accountProp.balance}</div>
 			<Link href={{
 				pathname: "update",
 				query: {
 					id: accountProp.id
 				}
 			}}>Edit</Link>
+
+			<Link href="/createDeposit">Create Deposit</Link>
+
 			<DeleteAccount id={accountProp.id}>Delete Account</DeleteAccount>
 		</div>
 	)
