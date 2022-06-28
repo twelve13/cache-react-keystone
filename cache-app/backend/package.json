@@ -1,8 +1,8 @@
 {
-  "name": "sick-fits-backend",
+  "name": "cache-backend",
   "version": "2.0.0",
   "private": true,
-  "author": "Wes Bos",
+  "author": "caroline",
   "license": "MIT",
   "scripts": {
     "dev": "keystone-next",

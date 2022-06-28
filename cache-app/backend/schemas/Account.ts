@@ -11,14 +11,14 @@ export const Account = list({
 		goal: integer(),
 		balance: integer(),
 		deposits: relationship({
-			ref: "Deposit",
+			ref: "Deposit.account",
 			many: true,
 			ui: {
 				inlineCreate: { fields: ["amount", "date"] }
 			}
 		}),
 		withdrawals: relationship({
-			ref: "Withdrawal",
+			ref: "Withdrawal.account",
 			many: true,
 			ui: {
 				inlineCreate: { fields: ["name", "amount", "date"] }
