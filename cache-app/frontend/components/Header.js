@@ -3,9 +3,8 @@ import Nav from "./Nav";
 
 export default function Header() {
 	return (
-		<header>
-			<p>I am the header</p>
-			<Link href="/">Cache</Link>
+		<header className="header">
+			<Link href="/"><div className="logo">Cache</div></Link>
 			<Nav />
 		</header>
 	);

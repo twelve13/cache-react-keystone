@@ -6,21 +6,23 @@ export default function Account({ accountProp }) {
 	return (
 		<div className="account-card">
 			<Link href={`/account/${accountProp.id}`}>
-				<div>{accountProp.name}</div>
+				<div className="account-name">{accountProp.name}</div>
 
 			</Link>
-			<div>Goal: {formatMoney(accountProp.goal)}</div>
-			<div>Current: {accountProp.balance}</div>
-			<Link href={{
-				pathname: "update",
-				query: {
-					id: accountProp.id
-				}
-			}}>Edit</Link>
+			<div className="account-details">
+				<div>Goal: {formatMoney(accountProp.goal)}</div>
+				<div>Balance: {accountProp.balance}</div>
+				<div><Link href={{
+					pathname: "update",
+					query: {
+						id: accountProp.id
+					}
+				}}>Edit</Link></div>
 
-			<Link href="/createDeposit">Create Deposit</Link>
+				<Link href="/createDeposit">Create Deposit</Link>
 
-			<DeleteAccount id={accountProp.id}>Delete Account</DeleteAccount>
+				<DeleteAccount id={accountProp.id}>Delete Account</DeleteAccount>
+			</div>
 		</div>
 	)
 }

@@ -2,6 +2,7 @@ import gql from "graphql-tag";
 import { useQuery } from "@apollo/client";
 import DisplayError from "./ErrorMessage";
 import Head from "next/head";
+import formatMoney from "../lib/formatMoney";
 
 const SINGLE_ACCOUNT_QUERY = gql`
 	query SINGLE_ACCOUNT_QUERY($id: ID!) {
@@ -33,12 +34,16 @@ export default function SingleAccount({ id }) {
 			<title>{data.Account.name}</title>
 		</Head>
 		<h2>{data.Account.name}</h2>
-	
+		<div className="deposits-header">
+			<div>Item Description</div>
+			<div>Amount</div>
+			<div>Date</div>
+		</div>
 		{data.Account.deposits.map(deposit => (
-			<div key={deposit.id}>
-				<div>Description: {deposit.description}</div>	
-				<div>Amount: {deposit.amount}</div>
-				<div>Date: {deposit.date}</div>
+			<div key={deposit.id} className="deposit-details">
+				<div>{deposit.description}</div>	
+				<div>{formatMoney(deposit.amount)}</div>
+				<div>{deposit.date}</div>
 			</div>
 		))}
 		

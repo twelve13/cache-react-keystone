@@ -4,8 +4,6 @@ export default function Page({ children }) {
 	return (
 		<div>
 			<Header />
-			<h2>I am the page component</h2>
-			<p>Props.children:</p>
 			{children}
 		</div>
 	);

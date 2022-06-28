@@ -1,3 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.logo {
+	background-color: black;
+	color: white;
+	font-size: 48px;
+	padding: 20px;
+}
+
+.nav a {
+	margin-left: 20px;
+}
+
+.accounts-grid {
+	display: flex;
+	flex-wrap: wrap;
+}
+
 .account-card {
-	border: solid 1px black;
+	border: solid 2px black;
+	border-radius: 20px;
+	font-size: 24px;
+	margin: 20px;
+	width: 250px;
+	overflow: hidden;
+}
+
+.account-name {
+	background-color: black;
+	color: white;
+	padding: 20px;
+}
+
+.account-details {
+	padding: 20px;
+}
+
+.deposits-header {
+	background-color: black;
+	color: white;
+	font-size: 20px;
+	display: flex;
+}
+
+.deposit-details {
+	display: flex;
+}
+
+.deposits-header div, .deposit-details div {
+	width: 33%;
 }

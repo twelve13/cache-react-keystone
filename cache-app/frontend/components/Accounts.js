@@ -19,7 +19,7 @@ export default function Accounts() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error.message}</p>;
 	return (
-		<div>
+		<div className="accounts-grid">
 			{data.allAccounts.map(accountPassedIn => (
 				<Account key={accountPassedIn.id} accountProp={accountPassedIn} />
 			))}
