@@ -26,7 +26,7 @@ export default function SingleAccount({ id }) {
 			id:id
 		}
 	});
-	console.log(data);
+	// console.log(data);
 	if(loading) return <p>Loading...</p>
 	if(error) return <DisplayError error={error}/>
 	return <div>

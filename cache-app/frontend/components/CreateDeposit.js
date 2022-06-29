@@ -13,31 +13,48 @@ mutation CREATE_DEPOSIT_MUTATION(
 	$description: String!
 	$amount: Int
 	$date: String
+	$accountID: ID!
 ) {
-	createDeposit(
-		data:{
-			description: $description,
-			amount: $amount
-			date: $date
+	updateAccount(
+		id: $accountID,
+		data: {
+			deposits: {
+				create: {
+					description: $description,
+					amount: $amount,
+					date: $date
+				}
+			}
+
 		}
 	) {
-		id
-		description
-		amount
-		date
+		deposits {
+			id
+			description
+			amount
+			date
+		}
 	}
-	}
+}
 `;
 
-export default function CreateDeposit() {
+//the accountID is passed in from the Account component
+export default function CreateDeposit(thisAccount) {
+	console.log(thisAccount.accountID);
 	//from the useForm custom hook
 	const { inputs, handleChange, clearForm } = useForm({
 		description: "Test deposit",
 		amount: 123,
-		date: "today"
+		date: "today",
 	});
 	const [createDeposit, { loading, error, data }] = useMutation(CREATE_DEPOSIT_MUTATION, {
-		variables: inputs,
+		//variables: inputs,
+		variables: { 
+			description: inputs.description,
+			amount: inputs.amount,
+			date: inputs.date,
+			accountID: thisAccount.accountID
+		},
 		//so it'll show up on the homepage immediately after creating
 		refetchQueries: [{ query: ALL_ACCOUNTS_QUERY }]
 	});
@@ -47,7 +64,7 @@ export default function CreateDeposit() {
 			//console.log(inputs);
 			//submit the input fields to the backend:
 			const res = await createDeposit();
-			console.log(res);
+			//console.log(res);
 			// Router.push({
 			// 	pathname:`/account/${res.data.createDeposit.id}`
 			// })

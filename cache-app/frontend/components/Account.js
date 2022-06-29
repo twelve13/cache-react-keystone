@@ -1,5 +1,6 @@
 import Link from "next/link";
 import formatMoney from "../lib/formatMoney";
+import CreateDeposit from "./CreateDeposit";
 import DeleteAccount from "./DeleteAccount";
 
 export default function Account({ accountProp }) {
@@ -19,7 +20,7 @@ export default function Account({ accountProp }) {
 					}
 				}}>Edit</Link></div>
 
-				<Link href="/createDeposit">Create Deposit</Link>
+				<CreateDeposit accountID={accountProp.id}/>
 
 				<DeleteAccount id={accountProp.id}>Delete Account</DeleteAccount>
 			</div>
