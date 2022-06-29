@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import DisplayError from "./ErrorMessage";
 import Head from "next/head";
 import formatMoney from "../lib/formatMoney";
+import DeleteAccount from "./DeleteAccount";
 
 const SINGLE_ACCOUNT_QUERY = gql`
 	query SINGLE_ACCOUNT_QUERY($id: ID!) {
@@ -47,6 +48,7 @@ export default function SingleAccount({ id }) {
 			</div>
 		))}
 		
+		<DeleteAccount id={id}>Delete Account</DeleteAccount>
 	
 	</div>
 }

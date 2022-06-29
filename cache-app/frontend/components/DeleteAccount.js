@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
+import Router from "next/router";
 
 const DELETE_ACCOUNT_MUTATION = gql`
 	mutation DELETE_ACCOUNT_MUTATION($id: ID!) {
@@ -33,6 +34,9 @@ export default function DeleteAccount({ id, children }) {
 			//if confirmed go ahead and delete it
 			deleteAccount().catch(err => alert(err.message))
 		}
+		Router.push({
+		pathname:`/`
+		})
 	}}>
 		{children}
 	</button>;

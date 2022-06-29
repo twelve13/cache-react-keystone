@@ -40,7 +40,7 @@ mutation CREATE_DEPOSIT_MUTATION(
 
 //the accountID is passed in from the Account component
 export default function CreateDeposit(thisAccount) {
-	console.log(thisAccount.accountID);
+	//console.log(thisAccount.accountID);
 	//from the useForm custom hook
 	const { inputs, handleChange, clearForm } = useForm({
 		description: "Test deposit",
@@ -105,7 +105,7 @@ export default function CreateDeposit(thisAccount) {
 				 />
 			</label>
 			</fieldset>
-			<button type="submit">Deposit</button>
+			<button type="submit">Submit</button>
 		</form>
 	)
 }

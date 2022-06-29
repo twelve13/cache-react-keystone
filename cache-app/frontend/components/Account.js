@@ -1,7 +1,7 @@
 import Link from "next/link";
 import formatMoney from "../lib/formatMoney";
 import CreateDeposit from "./CreateDeposit";
-import DeleteAccount from "./DeleteAccount";
+
 
 export default function Account({ accountProp }) {
 	return (
@@ -13,16 +13,16 @@ export default function Account({ accountProp }) {
 			<div className="account-details">
 				<div>Goal: {formatMoney(accountProp.goal)}</div>
 				<div>Balance: {accountProp.balance}</div>
+
+
+				<CreateDeposit accountID={accountProp.id}/>
+
 				<div><Link href={{
 					pathname: "update",
 					query: {
 						id: accountProp.id
 					}
-				}}>Edit</Link></div>
-
-				<CreateDeposit accountID={accountProp.id}/>
-
-				<DeleteAccount id={accountProp.id}>Delete Account</DeleteAccount>
+				}}>✏️</Link></div>
 			</div>
 		</div>
 	)
