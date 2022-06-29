@@ -18,7 +18,7 @@ export default function Account({ accountProp }) {
 				<CreateDeposit accountID={accountProp.id} accountBalance={accountProp.balance}/>
 
 				<div><Link href={{
-					pathname: "update",
+					pathname: "/update",
 					query: {
 						id: accountProp.id
 					}
