@@ -35,6 +35,7 @@ export default function SingleAccount({ id }) {
 			<title>{data.Account.name}</title>
 		</Head>
 		<h2>{data.Account.name}</h2>
+		<div>Balance: {data.Account.balance}</div>
 		<div className="deposits-header">
 			<div>Item Description</div>
 			<div>Amount</div>

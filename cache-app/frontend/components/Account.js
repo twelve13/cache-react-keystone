@@ -11,11 +11,11 @@ export default function Account({ accountProp }) {
 
 			</Link>
 			<div className="account-details">
-				<div>Goal: {formatMoney(accountProp.goal)}</div>
-				<div>Balance: {accountProp.balance}</div>
+				<div>Goal: ${accountProp.goal}</div>
+				<div>Balance: ${accountProp.balance}</div>
 
 
-				<CreateDeposit accountID={accountProp.id}/>
+				<CreateDeposit accountID={accountProp.id} accountBalance={accountProp.balance}/>
 
 				<div><Link href={{
 					pathname: "update",

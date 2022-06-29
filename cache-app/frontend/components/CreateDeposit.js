@@ -11,9 +11,10 @@ mutation CREATE_DEPOSIT_MUTATION(
 	# Which variables are getting passed in? and What types are they?
 	# ! makes it required
 	$description: String!
-	$amount: Int
+	$amount: Int!
 	$date: String
 	$accountID: ID!
+	$balance: Int!
 ) {
 	updateAccount(
 		id: $accountID,
@@ -25,6 +26,7 @@ mutation CREATE_DEPOSIT_MUTATION(
 					date: $date
 				}
 			}
+			balance: $balance
 
 		}
 	) {
@@ -40,12 +42,10 @@ mutation CREATE_DEPOSIT_MUTATION(
 
 //the accountID is passed in from the Account component
 export default function CreateDeposit(thisAccount) {
-	//console.log(thisAccount.accountID);
-	//from the useForm custom hook
 	const { inputs, handleChange, clearForm } = useForm({
-		description: "Test deposit",
-		amount: 123,
-		date: "today",
+		description: "",
+		amount: 0,
+		date: ""
 	});
 	const [createDeposit, { loading, error, data }] = useMutation(CREATE_DEPOSIT_MUTATION, {
 		//variables: inputs,
@@ -53,7 +53,8 @@ export default function CreateDeposit(thisAccount) {
 			description: inputs.description,
 			amount: inputs.amount,
 			date: inputs.date,
-			accountID: thisAccount.accountID
+			accountID: thisAccount.accountID,
+			balance: thisAccount.accountBalance + inputs.amount
 		},
 		//so it'll show up on the homepage immediately after creating
 		refetchQueries: [{ query: ALL_ACCOUNTS_QUERY }]
@@ -61,13 +62,7 @@ export default function CreateDeposit(thisAccount) {
 	return (
 		<form onSubmit={async (e) => {
 			e.preventDefault();
-			//console.log(inputs);
-			//submit the input fields to the backend:
 			const res = await createDeposit();
-			//console.log(res);
-			// Router.push({
-			// 	pathname:`/account/${res.data.createDeposit.id}`
-			// })
 		}}>
 			<DisplayError error={error} />
 			<fieldset disabled={loading} aria-busy={loading}>
