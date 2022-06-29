@@ -16,7 +16,9 @@ export default function useForm(initial = {}) {
 		let { value, name, type} = e.target;
 		//html inputs are automatically strings so need to convert to number
 		if(type === "number") {
-			value = parseInt(value)
+			if(value) {
+				value = parseInt(value)
+			}
 		}
 		setInputs({
 			//copy the existing state
