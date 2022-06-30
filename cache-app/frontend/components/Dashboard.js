@@ -1,15 +1,14 @@
 import React from 'react';
-import AddIncomeForm from "../components/AddIncomeForm";
-import Accounts from "../components/Accounts";
+import AddIncomeForm from "./AddIncomeForm";
 
-export default class AccountsPage extends React.Component {
+export default class Dashboard extends React.Component {
 	state = {
 		amount: 0,
 		source: ""
 	};
 	addIncome = income => {
 		//take a copy of the existing state
-		const incomeState = {...this.state}
+		const incomeState = {...this.state.income}
 		//update the state
 		incomeState.amount = income.amount;
 		incomeState.source = income.source;
@@ -19,21 +18,13 @@ export default class AccountsPage extends React.Component {
 			source: incomeState.source
 		})
 	};
-	updateIncome = (depositAmount) => {
-		const incomeState = {...this.state}
-		incomeState.amount -= depositAmount;
-		this.setState({
-			amount: incomeState.amount
-		})
-	};
-
 	render() {
 		return (
 			<div>
-			
+				<Header />
 				<div>{this.state.amount}</div>
 				<AddIncomeForm addIncome={this.addIncome} />
-				<Accounts updateIncome={this.updateIncome} />
+				{this.props.children}
 			</div>
 		);
 	}

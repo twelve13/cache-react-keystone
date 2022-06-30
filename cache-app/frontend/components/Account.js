@@ -3,7 +3,7 @@ import formatMoney from "../lib/formatMoney";
 import CreateDeposit from "./CreateDeposit";
 
 
-export default function Account({ accountProp }) {
+export default function Account({ accountProp, updateIncome }) {
 	return (
 		<div className="account-card">
 			<Link href={`/account/${accountProp.id}`}>
@@ -15,7 +15,7 @@ export default function Account({ accountProp }) {
 				<div>Balance: ${accountProp.balance}</div>
 
 
-				<CreateDeposit accountID={accountProp.id} accountBalance={accountProp.balance}/>
+				<CreateDeposit accountID={accountProp.id} accountBalance={accountProp.balance} updateIncome={updateIncome} />
 
 				<div><Link href={{
 					pathname: "/update",

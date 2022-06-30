@@ -40,8 +40,14 @@ mutation CREATE_DEPOSIT_MUTATION(
 }
 `;
 
+
 //the accountID is passed in from the Account component
 export default function CreateDeposit(thisAccount) {
+	const updateIncome = () => {
+		//console.log(inputs.amount)
+		thisAccount.updateIncome.updateIncome(inputs.amount);
+	}
+
 	const { inputs, handleChange, clearForm } = useForm({
 		description: "",
 		amount: 0,
@@ -59,9 +65,12 @@ export default function CreateDeposit(thisAccount) {
 		//so it'll show up on the homepage immediately after creating
 		refetchQueries: [{ query: ALL_ACCOUNTS_QUERY }]
 	});
+	// thisAccount.updateIncome.updateIncome();
+
 	return (
 		<form onSubmit={async (e) => {
 			e.preventDefault();
+			updateIncome();
 			const res = await createDeposit();
 		}}>
 			<DisplayError error={error} />
