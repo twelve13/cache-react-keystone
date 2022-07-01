@@ -44,7 +44,7 @@ mutation CREATE_DEPOSIT_MUTATION(
 
 //the accountID is passed in from the Account component
 export default function CreateDeposit(thisAccount) {
-	console.log(thisAccount)
+	//console.log(thisAccount)
 	const updateIncome = () => {
 		thisAccount.accountProps.updateIncome(inputs.amount);
 	}
