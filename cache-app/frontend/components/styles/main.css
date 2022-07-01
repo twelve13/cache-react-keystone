@@ -15,6 +15,11 @@ body {
 	margin-left: 20px;
 }
 
+.income {
+	text-align: center;
+	font-size: 24px;
+}
+
 .accounts-grid {
 	display: flex;
 	flex-wrap: wrap;

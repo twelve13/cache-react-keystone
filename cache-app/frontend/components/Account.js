@@ -3,24 +3,26 @@ import formatMoney from "../lib/formatMoney";
 import CreateDeposit from "./CreateDeposit";
 
 
-export default function Account({ accountProp, updateIncome }) {
+export default function Account({ thisAccount, accountProps }) {
+	//thisAccount hols id, name, goal, balance
+	//accountProps holds incomeSource, updateIncome function
 	return (
 		<div className="account-card">
-			<Link href={`/account/${accountProp.id}`}>
-				<div className="account-name">{accountProp.name}</div>
+			<Link href={`/account/${thisAccount.id}`}>
+				<div className="account-name">{thisAccount.name}</div>
 
 			</Link>
 			<div className="account-details">
-				<div>Goal: ${accountProp.goal}</div>
-				<div>Balance: ${accountProp.balance}</div>
+				<div>Goal: ${thisAccount.goal}</div>
+				<div>Balance: ${thisAccount.balance}</div>
 
 
-				<CreateDeposit accountID={accountProp.id} accountBalance={accountProp.balance} updateIncome={updateIncome} />
+				<CreateDeposit accountID={thisAccount.id} accountBalance={thisAccount.balance} accountProps={accountProps} />
 
 				<div><Link href={{
 					pathname: "/update",
 					query: {
-						id: accountProp.id
+						id: thisAccount.id
 					}
 				}}>✏️</Link></div>
 			</div>

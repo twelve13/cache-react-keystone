@@ -31,9 +31,10 @@ export default class AccountsPage extends React.Component {
 		return (
 			<div>
 			
-				<div>{this.state.amount}</div>
+				<div className="income">Income: ${this.state.amount}</div>
+				<div className="income">Source: {this.state.source}</div>
 				<AddIncomeForm addIncome={this.addIncome} />
-				<Accounts updateIncome={this.updateIncome} />
+				<Accounts updateIncome={this.updateIncome} incomeSource={this.state.source}/>
 			</div>
 		);
 	}

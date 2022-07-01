@@ -44,9 +44,9 @@ mutation CREATE_DEPOSIT_MUTATION(
 
 //the accountID is passed in from the Account component
 export default function CreateDeposit(thisAccount) {
-	console.log(thisAccount)
 	const updateIncome = () => {
-		thisAccount.accountProps.updateIncome(inputs.amount);
+		//console.log(inputs.amount)
+		thisAccount.updateIncome.updateIncome(inputs.amount);
 	}
 
 	const { inputs, handleChange, clearForm } = useForm({
@@ -54,21 +54,19 @@ export default function CreateDeposit(thisAccount) {
 		amount: 0,
 		date: ""
 	});
-
-	const today = new Date();
-
 	const [createDeposit, { loading, error, data }] = useMutation(CREATE_DEPOSIT_MUTATION, {
+		//variables: inputs,
 		variables: { 
-			description: thisAccount.accountProps.incomeSource,
+			description: inputs.description,
 			amount: inputs.amount,
-			//use current date
-			date: today,
+			date: inputs.date,
 			accountID: thisAccount.accountID,
 			balance: thisAccount.accountBalance + inputs.amount
 		},
 		//so it'll show up on the homepage immediately after creating
 		refetchQueries: [{ query: ALL_ACCOUNTS_QUERY }]
 	});
+	// thisAccount.updateIncome.updateIncome();
 
 	return (
 		<form onSubmit={async (e) => {
@@ -78,6 +76,17 @@ export default function CreateDeposit(thisAccount) {
 		}}>
 			<DisplayError error={error} />
 			<fieldset disabled={loading} aria-busy={loading}>
+			<label htmlFor="name">
+				Description
+				<input 
+					type="text" 
+					id="description" 
+					name="description" 
+					placeholder="enter description"
+					value={inputs.description}
+					onChange={handleChange}
+				 />
+			</label>
 			<label htmlFor="amount">
 				Amount
 				<input 
@@ -86,6 +95,17 @@ export default function CreateDeposit(thisAccount) {
 					name="amount" 
 					placeholder="enter amount"
 					value={inputs.amount}
+					onChange={handleChange}
+				 />
+			</label>
+			<label htmlFor="date">
+				Date
+				<input 
+					type="date" 
+					id="date" 
+					name="date" 
+					placeholder="enter date"
+					value={inputs.date}
 					onChange={handleChange}
 				 />
 			</label>

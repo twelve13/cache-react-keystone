@@ -12,8 +12,9 @@ query ALL_ACCOUNTS_QUERY {
   	}
 }
 `
+//accountProps holds incomeSource and updateIncome function
 
-export default function Accounts(updateIncome) {
+export default function Accounts(accountProps) {
 	const { data, error, loading } = useQuery(ALL_ACCOUNTS_QUERY)
 	//console.log(data, error, loading);
 	if (loading) return <p>Loading...</p>;
@@ -21,7 +22,7 @@ export default function Accounts(updateIncome) {
 	return (
 		<div className="accounts-grid">
 			{data.allAccounts.map(accountPassedIn => (
-				<Account key={accountPassedIn.id} accountProp={accountPassedIn} updateIncome={updateIncome}/>
+				<Account key={accountPassedIn.id} thisAccount={accountPassedIn} accountProps={accountProps}/>
 			))}
 		</div>
 	);
