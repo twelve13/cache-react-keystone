@@ -73,6 +73,10 @@ export default function CreateDeposit(thisAccount) {
 	return (
 		<form onSubmit={async (e) => {
 			e.preventDefault();
+			if(inputs.amount > thisAccount.accountProps.incomeAmount) {
+				alert("The deposit amount is greater than the available income.");
+				return;
+			}
 			updateIncome();
 			const res = await createDeposit();
 		}}>
