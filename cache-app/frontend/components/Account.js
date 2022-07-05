@@ -1,6 +1,7 @@
 import Link from "next/link";
 import formatMoney from "../lib/formatMoney";
 import CreateDeposit from "./CreateDeposit";
+import CreateWithdrawal from "./CreateWithdrawal"
 
 
 export default function Account({ thisAccount, accountProps }) {
@@ -18,6 +19,7 @@ export default function Account({ thisAccount, accountProps }) {
 
 
 				<CreateDeposit accountID={thisAccount.id} accountBalance={thisAccount.balance} accountProps={accountProps} />
+				<CreateWithdrawal accountID={thisAccount.id} accountBalance={thisAccount.balance} accountProps={accountProps} />
 
 				<div><Link href={{
 					pathname: "/update",

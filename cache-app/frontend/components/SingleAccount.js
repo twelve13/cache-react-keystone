@@ -17,6 +17,12 @@ const SINGLE_ACCOUNT_QUERY = gql`
 				amount
 				date
 			}
+			withdrawals {
+				id
+				description
+				amount
+				date
+			}
 		}
 	}
 `;
@@ -36,6 +42,20 @@ export default function SingleAccount({ id }) {
 		</Head>
 		<h2>{data.Account.name}</h2>
 		<div>Balance: {data.Account.balance}</div>
+
+		<div className="deposits-header">
+			<div>Item Description</div>
+			<div>Amount</div>
+			<div>Date</div>
+		</div>
+		{data.Account.withdrawals.map(withdrawal => (
+			<div key={withdrawal.id} className="deposit-details">
+				<div>{withdrawal.description}</div>	
+				<div>{formatMoney(withdrawal.amount)}</div>
+				<div>{withdrawal.date}</div>
+			</div>
+		))}
+
 		<div className="deposits-header">
 			<div>Item Description</div>
 			<div>Amount</div>

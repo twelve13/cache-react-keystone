@@ -7,8 +7,8 @@ import { ALL_ACCOUNTS_QUERY } from "./Accounts";
 import Router from "next/router";
 
 //https://v5.keystonejs.com/keystonejs/fields/src/types/relationship/
-const CREATE_DEPOSIT_MUTATION = gql`
-mutation CREATE_DEPOSIT_MUTATION(
+const CREATE_WITHDRAWAL_MUTATION = gql`
+mutation CREATE_WITHDRAWAL_MUTATION(
 	# Which variables are getting passed in? and What types are they?
 	# ! makes it required
 	$description: String!
@@ -20,7 +20,7 @@ mutation CREATE_DEPOSIT_MUTATION(
 	updateAccount(
 		id: $accountID,
 		data: {
-			deposits: {
+			withdrawals: {
 				create: {
 					description: $description,
 					amount: $amount,
@@ -31,7 +31,7 @@ mutation CREATE_DEPOSIT_MUTATION(
 
 		}
 	) {
-		deposits {
+		withdrawals {
 			id
 			description
 			amount
@@ -43,36 +43,30 @@ mutation CREATE_DEPOSIT_MUTATION(
 
 
 //the accountID is passed in from the Account component
-export default function CreateDeposit(thisAccount) {
-	const updateIncome = () => {
-		//console.log(inputs.amount)
-		thisAccount.updateIncome.updateIncome(inputs.amount);
-	}
+export default function CreateWithdrawal(thisAccount) {
 
 	const { inputs, handleChange, clearForm } = useForm({
 		description: "",
 		amount: 0,
 		date: ""
 	});
-	const [createDeposit, { loading, error, data }] = useMutation(CREATE_DEPOSIT_MUTATION, {
+	const [createWithdrawal, { loading, error, data }] = useMutation(CREATE_WITHDRAWAL_MUTATION, {
 		//variables: inputs,
 		variables: { 
 			description: inputs.description,
 			amount: inputs.amount,
 			date: inputs.date,
 			accountID: thisAccount.accountID,
-			balance: thisAccount.accountBalance + inputs.amount
+			balance: thisAccount.accountBalance - inputs.amount
 		},
 		//so it'll show up on the homepage immediately after creating
 		refetchQueries: [{ query: ALL_ACCOUNTS_QUERY }]
 	});
-	// thisAccount.updateIncome.updateIncome();
 
 	return (
 		<form onSubmit={async (e) => {
 			e.preventDefault();
-			updateIncome();
-			const res = await createDeposit();
+			const res = await createWithdrawal();
 		}}>
 			<DisplayError error={error} />
 			<fieldset disabled={loading} aria-busy={loading}>
