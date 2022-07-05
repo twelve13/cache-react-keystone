@@ -1,6 +1,7 @@
 import { list } from "@keystone-next/keystone/schema";
 import { text, integer, relationship } from "@keystone-next/fields";
 
+//https://keystonejs.com/docs/apis/fields
 export const Deposit = list({
 	//the Keystone ui interface
 	ui: {
