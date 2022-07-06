@@ -29,7 +29,7 @@ export default class AddIncomeForm extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="add-income-form">
 			<div className="add-income" onClick={this.toggleForm}><div className="add-income-button">+ Add Income</div></div>
 			<form onSubmit={this.addIncome} className={this.state.toggled ? "show-form" : "hide-form"}>
 				<input name="amount" ref={this.amountRef} type="text" placeholder="Amount" />
