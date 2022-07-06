@@ -66,6 +66,10 @@ export default function CreateWithdrawal(thisAccount) {
 	return (
 		<form onSubmit={async (e) => {
 			e.preventDefault();
+			if(inputs.amount > thisAccount.accountBalance){
+				alert("withdrawal amount is greater than account balance");
+				return;
+			}
 			const res = await createWithdrawal();
 		}}>
 			<DisplayError error={error} />

@@ -4,6 +4,7 @@ import DisplayError from "./ErrorMessage";
 import Head from "next/head";
 import formatMoney from "../lib/formatMoney";
 import DeleteAccount from "./DeleteAccount";
+import Deposit from "./Deposit";
 
 const SINGLE_ACCOUNT_QUERY = gql`
 	query SINGLE_ACCOUNT_QUERY($id: ID!) {
@@ -41,10 +42,11 @@ export default function SingleAccount({ id }) {
 			<title>{data.Account.name}</title>
 		</Head>
 		<h2>{data.Account.name}</h2>
-		<div>Balance: {data.Account.balance}</div>
+		<DeleteAccount id={id}>Delete Account</DeleteAccount>
+		<div>Balance: ${data.Account.balance}</div>
 
 		<div className="deposits-header">
-			<div>Item Description</div>
+			<div>Withdrawals</div>
 			<div>Amount</div>
 			<div>Date</div>
 		</div>
@@ -57,19 +59,15 @@ export default function SingleAccount({ id }) {
 		))}
 
 		<div className="deposits-header">
-			<div>Item Description</div>
+			<div>Deposits</div>
 			<div>Amount</div>
 			<div>Date</div>
 		</div>
 		{data.Account.deposits.map(deposit => (
-			<div key={deposit.id} className="deposit-details">
-				<div>{deposit.description}</div>	
-				<div>{formatMoney(deposit.amount)}</div>
-				<div>{deposit.date}</div>
-			</div>
+			<Deposit key={deposit.id} deposit={deposit} accountBalance={data.Account.balance}></Deposit>
 		))}
 		
-		<DeleteAccount id={id}>Delete Account</DeleteAccount>
+		
 	
 	</div>
 }
