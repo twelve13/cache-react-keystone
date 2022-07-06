@@ -38,12 +38,14 @@ export default function SingleAccount({ id }) {
 	// console.log(data);
 	if(loading) return <p>Loading...</p>
 	if(error) return <DisplayError error={error}/>
-	return <div>
+	return <div className="single-account">
 		<Head>
 			<title>{data.Account.name}</title>
 		</Head>
-		<h2>{data.Account.name}</h2>
-		<DeleteAccount id={id}>Delete Account</DeleteAccount>
+		<header>
+			<h2>{data.Account.name}</h2>
+			<DeleteAccount id={id}>Delete Account</DeleteAccount>
+		</header>
 		<div>Balance: ${data.Account.balance}</div>
 
 		<div className="deposits-header">

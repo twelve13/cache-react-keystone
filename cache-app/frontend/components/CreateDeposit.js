@@ -71,7 +71,8 @@ export default function CreateDeposit(thisAccount) {
 	});
 
 	return (
-		<form onSubmit={async (e) => {
+		<div>
+		<form className={thisAccount.depositToggled ? "show-form" : "hide-form"} onSubmit={async (e) => {
 			e.preventDefault();
 			if(inputs.amount > thisAccount.accountProps.incomeAmount) {
 				alert("The deposit amount is greater than the available income.");
@@ -94,7 +95,8 @@ export default function CreateDeposit(thisAccount) {
 				 />
 			</label>
 			</fieldset>
-			<button type="submit">Submit</button>
+			<button type="submit" onClick={thisAccount.toggleDeposit}>Submit</button>
 		</form>
+		</div>
 	)
 }

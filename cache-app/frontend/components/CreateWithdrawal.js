@@ -64,7 +64,8 @@ export default function CreateWithdrawal(thisAccount) {
 	});
 
 	return (
-		<form onSubmit={async (e) => {
+		<div>
+		<form className={thisAccount.withdrawalToggled ? "show-form" : "hide-form"} onSubmit={async (e) => {
 			e.preventDefault();
 			if(inputs.amount > thisAccount.accountBalance){
 				alert("withdrawal amount is greater than account balance");
@@ -74,17 +75,6 @@ export default function CreateWithdrawal(thisAccount) {
 		}}>
 			<DisplayError error={error} />
 			<fieldset disabled={loading} aria-busy={loading}>
-			<label htmlFor="name">
-				Description
-				<input 
-					type="text" 
-					id="description" 
-					name="description" 
-					placeholder="enter description"
-					value={inputs.description}
-					onChange={handleChange}
-				 />
-			</label>
 			<label htmlFor="amount">
 				Amount
 				<input 
@@ -93,6 +83,17 @@ export default function CreateWithdrawal(thisAccount) {
 					name="amount" 
 					placeholder="enter amount"
 					value={inputs.amount}
+					onChange={handleChange}
+				 />
+			</label>
+			<label htmlFor="name">
+				Description
+				<input 
+					type="text" 
+					id="description" 
+					name="description" 
+					placeholder="enter description"
+					value={inputs.description}
 					onChange={handleChange}
 				 />
 			</label>
@@ -108,7 +109,8 @@ export default function CreateWithdrawal(thisAccount) {
 				 />
 			</label>
 			</fieldset>
-			<button type="submit">Submit</button>
+			<button onClick={thisAccount.toggleWithdrawal} type="submit">Submit</button>
 		</form>
+		</div>
 	)
 }

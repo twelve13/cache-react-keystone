@@ -52,6 +52,6 @@ export default function DeleteDeposit({ id, accountBalance, depositAmount }) {
 			//if confirmed go ahead and delete it
 			deleteDeposit().catch(err => alert(err.message))
 		}
-	}}>
+	}}>Delete
 	</button>;
 }

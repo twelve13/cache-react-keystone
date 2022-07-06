@@ -52,6 +52,6 @@ export default function DeleteWithdrawal({ id, accountBalance, withdrawalAmount 
 			//if confirmed go ahead and delete it
 			deleteWithdrawal().catch(err => alert(err.message))
 		}
-	}}>
+	}}>Delete
 	</button>;
 }
