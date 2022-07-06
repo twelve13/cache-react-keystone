@@ -34,7 +34,7 @@ export default function App() {
 
 
 		return (
-			<div>
+			<div className="main">
 				<div className="income">Income: ${income}</div>
 				<div className="income">Source: {source}</div>
 				<AddIncomeForm addIncome={addIncome} />
