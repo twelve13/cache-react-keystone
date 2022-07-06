@@ -5,6 +5,7 @@ import Head from "next/head";
 import formatMoney from "../lib/formatMoney";
 import DeleteAccount from "./DeleteAccount";
 import Deposit from "./Deposit";
+import Withdrawal from "./Withdrawal";
 
 const SINGLE_ACCOUNT_QUERY = gql`
 	query SINGLE_ACCOUNT_QUERY($id: ID!) {
@@ -51,11 +52,7 @@ export default function SingleAccount({ id }) {
 			<div>Date</div>
 		</div>
 		{data.Account.withdrawals.map(withdrawal => (
-			<div key={withdrawal.id} className="deposit-details">
-				<div>{withdrawal.description}</div>	
-				<div>{formatMoney(withdrawal.amount)}</div>
-				<div>{withdrawal.date}</div>
-			</div>
+			<Withdrawal key={withdrawal.id} withdrawal={withdrawal} accountBalance={data.Account.balance}></Withdrawal>
 		))}
 
 		<div className="deposits-header">
