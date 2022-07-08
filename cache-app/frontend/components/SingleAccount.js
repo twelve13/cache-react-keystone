@@ -54,7 +54,7 @@ export default function SingleAccount({ id }) {
 			<div>Date</div>
 		</div>
 		{data.Account.withdrawals.map(withdrawal => (
-			<Withdrawal key={withdrawal.id} withdrawal={withdrawal} accountBalance={data.Account.balance}></Withdrawal>
+			<Withdrawal key={withdrawal.id} withdrawal={withdrawal} accountId={id} accountBalance={data.Account.balance}></Withdrawal>
 		))}
 
 		<div className="deposits-header">

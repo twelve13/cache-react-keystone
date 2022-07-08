@@ -2,13 +2,15 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 import Router from "next/router";
 
+//delete the withdrawal and add the amount to the account's balance
 const DELETE_WITHDRAWAL_MUTATION = gql`
 	mutation DELETE_WITHDRAWAL_MUTATION(
 		$id: ID!
+		$accountId: ID!
 		$balance: Int!
 		) {
 		updateAccount(
-			id: "60a412c2e8e13ceaa3d24e7a",
+			id: $accountId,
 			data : {
 				balance: $balance
 			}
@@ -31,12 +33,13 @@ function update(cache, payload) {
 	cache.evict(cache.identify(payload.data.deleteWithdrawal))
 };
 
-export default function DeleteWithdrawal({ id, accountBalance, withdrawalAmount }) {
+export default function DeleteWithdrawal({ id, accountId, accountBalance, withdrawalAmount }) {
 	const [deleteWithdrawal, { loading, error }] = useMutation(
 		DELETE_WITHDRAWAL_MUTATION,
 		{
 			variables: { 
 				id: id,
+				accountId: accountId,
 				balance: accountBalance + withdrawalAmount
 			},
 			update: update

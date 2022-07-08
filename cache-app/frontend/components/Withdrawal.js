@@ -7,7 +7,7 @@ export default function Withdrawal(withdrawal) {
 				<div>{withdrawal.withdrawal.description}</div>	
 				<div>{formatMoney(withdrawal.withdrawal.amount)}</div>
 				<div>{withdrawal.withdrawal.date}</div>
-				<DeleteWithdrawal id={withdrawal.withdrawal.id} accountBalance={withdrawal.accountBalance} withdrawalAmount={withdrawal.withdrawal.amount}>Delete</DeleteWithdrawal>
+				<DeleteWithdrawal id={withdrawal.withdrawal.id} accountId={withdrawal.accountId} accountBalance={withdrawal.accountBalance} withdrawalAmount={withdrawal.withdrawal.amount}>Delete</DeleteWithdrawal>
 			</div>
 	)
 }
