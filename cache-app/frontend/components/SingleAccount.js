@@ -63,7 +63,7 @@ export default function SingleAccount({ id }) {
 			<div>Date</div>
 		</div>
 		{data.Account.deposits.map(deposit => (
-			<Deposit key={deposit.id} deposit={deposit} accountBalance={data.Account.balance}></Deposit>
+			<Deposit key={deposit.id} deposit={deposit} accountId={id} accountBalance={data.Account.balance}></Deposit>
 		))}
 		
 		

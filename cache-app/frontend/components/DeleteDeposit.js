@@ -2,13 +2,15 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 import Router from "next/router";
 
+//delete the deposit and subtract that from the account's balance
 const DELETE_DEPOSIT_MUTATION = gql`
 	mutation DELETE_DEPOSIT_MUTATION(
 		$id: ID!
+		$accountId: ID!
 		$balance: Int!
 		) {
 		updateAccount(
-			id: "60a412c2e8e13ceaa3d24e7a",
+			id: $accountId,
 			data : {
 				balance: $balance
 			}
@@ -31,12 +33,13 @@ function update(cache, payload) {
 	cache.evict(cache.identify(payload.data.deleteDeposit))
 };
 
-export default function DeleteDeposit({ id, accountBalance, depositAmount }) {
+export default function DeleteDeposit({ id, accountId, accountBalance, depositAmount }) {
 	const [deleteDeposit, { loading, error }] = useMutation(
 		DELETE_DEPOSIT_MUTATION,
 		{
 			variables: { 
 				id: id,
+				accountId: accountId,
 				balance: accountBalance - depositAmount
 			},
 			update: update
