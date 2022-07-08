@@ -16,6 +16,7 @@ export default class AddIncomeForm extends React.Component {
 		}
 		//console.log(income);
 		this.props.addIncome(income);
+		this.toggleForm();
 		//reset the form
 		event.currentTarget.reset();
 	};
@@ -32,9 +33,9 @@ export default class AddIncomeForm extends React.Component {
 			<div className="add-income-form">
 			<div className="add-income" onClick={this.toggleForm}><div className="add-income-button">+ Add Income</div></div>
 			<form onSubmit={this.addIncome} className={this.state.toggled ? "show-form" : "hide-form"}>
-				<input name="amount" ref={this.amountRef} type="text" placeholder="Amount" />
-				<input name="source" ref={this.sourceRef} type="text" placeholder="Source" />
-				<button type="submit" onClick={this.toggleForm}>Submit</button>
+				<input name="amount" ref={this.amountRef} type="text" placeholder="Amount" required/>
+				<input name="source" ref={this.sourceRef} type="text" placeholder="Source" required/>
+				<button type="submit">Submit</button>
 			</form>
 			</div>
 		);
