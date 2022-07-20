@@ -86,7 +86,7 @@ export default function CreateWithdrawal(thisAccount) {
 					onChange={handleChange}
 				 />
 			</label>
-			<label htmlFor="name">
+			<label htmlFor="description">
 				Description
 				<input 
 					type="text" 
