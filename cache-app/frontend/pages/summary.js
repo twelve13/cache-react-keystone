@@ -1,7 +1,9 @@
-export default function Summary() {
+import Summary from "../components/Summary";
+
+export default function SummaryPage() {
 	return (
 		<div>
-			I am the summary page
+			<Summary />
 		</div>
 	)
 }
